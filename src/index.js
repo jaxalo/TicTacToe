@@ -116,14 +116,22 @@ class Board extends React.Component {
 
     messageToDisplay() {
         let status;
-        if (this.state.gameOver && this.state.winner !== null) {
+        if (this.existWinner()) {
             status = 'Winner is : ' + this.state.winner;
-        } else if(this.state.gameOver && this.state.winner === null){
+        } else if(this.existTie()){
             status = 'Tie';
         } else {
             status = 'Next player: ' + this.state.actualPlayer;
         }
         return status;
+    }
+
+    existWinner() {
+        return this.state.gameOver && this.state.winner !== null;
+    }
+
+    existTie(){
+        return this.state.gameOver && this.state.winner === null;
     }
 
     render() {
